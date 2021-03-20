@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import Btn from './Button';
-import { useState } from 'react';
+import {useLocation} from 'react-router-dom';
 
-const Header = (/*props*/ { userName }) => {
+const Header = (/*props*/ { userName, toggleAddTask }) => {
 
     // count is a new state variable, and setstate updates that variable
-    const [count, setCount] = useState(0);
+    //const [count, setCount] = useState(0);
+    const location = useLocation();
 
     return (
 
         <header>
             {/* The inline style requires double curly braces, Property Names are in camelCase without Hyphens*/}
-            <h1 style={{ color: 'green', backgroundColor: 'orange' }}>{/*props.userName*/ userName}'s To Do List</h1>
-            <Btn textName='ClicksTracker' BGColor='cyan' onClick={() => setCount(count + 1)}></Btn>
-            <p id='btnText'>Click Count: {count}</p>
+            <h1 style={{textAlign:'center', justifyContent:'center', color: 'green', backgroundColor: 'orange' }}>{/*props.userName*/ userName}'s To Do List</h1>
+            {location.pathname === '/' && <Btn  textName='Add Task' onClick={toggleAddTask}></Btn>}
         </header>
     );
 }

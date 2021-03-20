@@ -1,32 +1,15 @@
-import {useState} from 'react';
+import IndividualTask from './IndividualTask.js'
 
-const Tasks = () =>{
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            text: 'Task 1 text',
-            day: 'Wednesday at 4',
-            reminder: true,
-        },
-        {
-            id: 2,
-            text: 'Task 2 text',
-            day: 'Thursday at 5',
-            reminder: false,
-        },
-        {
-            id: 3,
-            text: 'Task 3 text',
-            day: 'Friday at 6',
-            reminder: true,
-        }
-    ])
+// Curly braces here destructure props so that props.tasks is not necessary
+const Tasks = ({tasksList, deleteFunction, reminder}) =>{
+    
     
     return (
-        <>
-            {tasks.map(task => <h3 key={task.id}>{task.text}</h3>
+        <div style={{width:'60%', marginLeft:'20%'}}>
+            {tasksList.map(currentTask => <IndividualTask reminder={reminder} deleteFunction={deleteFunction} currentTask={currentTask} 
+            key={currentTask.id}></IndividualTask>
             )}
-        </>
+        </div>
     );
 }
 
